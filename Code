@@ -1,0 +1,130 @@
+Первая часть первого  ДЗ
+Linux terminal (GitBash) commands
+
+Ковалева Анастасия, 07.02.2022 
+
+1) Посмотреть где я
+$ pwd
+
+2) Создать папку
+$ mkdir qa_HW1
+
+3) Зайти в папку
+$ cd qa_HW1
+
+4) Создать 3 папки
+$ mkdir dir1 dir2 dir3
+
+5) Зайти в любоую папку
+$ cd dir1
+
+6) Создать 5 файлов (3 txt, 2 json)
+$ touch f1.txt f2.txt f3.txt j1.json j2.json
+
+7) Создать 3 папки
+$ mkdir folder1 folder2 folder3
+
+8. Вывести список содержимого папки
+$ ls -l
+
+total 0
+-rw-r--r-- 1 1 197121 0 Apr  6 18:03 f1.txt
+-rw-r--r-- 1 1 197121 0 Apr  6 18:03 f2.txt
+-rw-r--r-- 1 1 197121 0 Apr  6 18:03 f3.txt
+drwxr-xr-x 1 1 197121 0 Apr  6 18:05 folder1/
+drwxr-xr-x 1 1 197121 0 Apr  6 18:05 folder2/
+drwxr-xr-x 1 1 197121 0 Apr  6 18:05 folder3/
+-rw-r--r-- 1 1 197121 0 Apr  6 18:03 j1.json
+
+9) + Открыть любой txt файл
+$ cat f1.txt
+
+или
+
+$ vim f.txt
+
+10) + написать туда что-нибудь, любой текст.
+$ cat >> f1.txt
+hello, world!
+
+или в VIM
+~ i #insert
+~ print text
+
+11) + сохранить и выйти.
+$ cntr + C
+
+или в VIM
+esq :wq
+
+12) Выйти из папки на уровень выше
+$ cd ..
+
+13) переместить любые 2 файла, которые вы создали, в любую другую папку.
+$ mv dir1/f1.txt dir2/f1_mv.txt
+$ mv dir1/f2.txt dir2/f2_mv.txt
+
+14) скопировать любые 2 файла, которые вы создали, в любую другую папку.
+$ cp dir2/f1_mv.txt dir3/f1_mv_copy.txt
+$ cp dir2/f2_mv.txt dir3/f2_mv_copy.txt
+
+15) Найти файл по имени
+
+$ find -name "f1_mv.txt"
+./dir2/f1_mv.txt
+
+16) просмотреть содержимое в реальном времени (команда grep) изучите как она работает.
+
+# просмотреть содержимое в реальном времени
+$ tail -f f1_mv.txt
+
+16*) grep
+
+$ grep -E "^hello" f1_mv.txt 
+$ grep -E "^[a-za-Z]*!" f1_mv.txt
+$ grep -E "^[a-za-Z]*g" f1_mv.txt 
+
+17) вывести несколько первых строк из текстового файла
+
+$ head -3 f1_mv.txt
+
+ИЛИ
+
+$ cat f1_mv.txt | grep 3 -A 2
+$ cat f1_mv.txt | grep 3 -B 2
+$ cat f1_mv.txt | grep 3 -C 2
+
+18) вывести несколько последних строк из текстового файла
+$ tail -3 f1_mv.txt
+
+19) просмотреть содержимое длинного файла (команда less) изучите как она работает.
+$ less -f f1_mv.txt
+$less -f -3 f1_mv.txt
+
+20) вывести дату и время
+$ date
+
+=========
+
+Задание *
+1) Отправить http запрос на сервер.
+$ curl "http://162.55.220.72:5005/terminal-hw-request"
+$ curl "http://162.55.220.72:5005/get_method?name=Nastya&age=22"
+
+2) Написать скрипт который выполнит автоматически пункты 3, 4, 5, 6, 7, 8, 13
+
+$ nano myscript1.sh
+
+#!/bin/bash
+echo "Auto script"
+mkdir qa_HW1;
+cd qa_HW1;
+mkdir d1 d2 d3;
+cd d1;
+> f01.txt > f02.txt > f03.txt > j01.json > j02.json;
+mkdir d4 d5 d6;
+mv f01.txt d4;
+mv f02.txt d4;
+ls -la
+
+$ ./myscript1.sh
